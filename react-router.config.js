@@ -3,5 +3,6 @@ export default {
   // Server-side render by default, to enable SPA mode set this to `false`
   // Disabled for static GitHub Pages hosting
   ssr: false,
-  // Note: basename is handled by Vite's base config in vite.config.js
+  // Set basename to /ticketline-portal only for production builds
+  basename: process.env.NODE_ENV === "production" ? "/ticketline-portal" : "/",
 };

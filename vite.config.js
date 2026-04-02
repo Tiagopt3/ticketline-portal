@@ -3,6 +3,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/ticketline-portal/",
+  base: process.env.NODE_ENV === "production" ? "/ticketline-portal/" : "/",
   plugins: [reactRouter(), tailwindcss()],
 });
