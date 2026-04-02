@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext(null);
-const SESSION_TIMEOUT = 1 * 60 * 1000; // 20 minutes in milliseconds
+const SESSION_TIMEOUT = 20 * 60 * 1000; // 20 minutes in milliseconds
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
