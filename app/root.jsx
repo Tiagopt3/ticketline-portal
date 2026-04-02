@@ -37,18 +37,6 @@ export function Layout({ children }) {
         <meta name="theme-color" content="#030712" media="(prefers-color-scheme: dark)" />
         <Meta />
         <Links />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if (window.location.search) {
-                const path = window.location.search.substring(1);
-                if (path) {
-                  window.history.replaceState(null, null, '/ticketline-portal/' + path);
-                }
-              }
-            `,
-          }}
-        />
       </head>
       <body>
         {children}
