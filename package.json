@@ -6,10 +6,9 @@
     "node": ">=20.12.0"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "react-router build",
     "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
-    "deploy": "npm run build && git add dist -f && git commit -m 'Deploy to GitHub Pages' && git push"
+    "start": "react-router-serve ./build/server/index.js"
   },
   "dependencies": {
     "@react-router/node": "7.13.2",
