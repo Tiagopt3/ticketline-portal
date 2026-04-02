@@ -8,6 +8,7 @@ import {
 } from "react-router";
 
 import { AuthProvider } from "./auth-context";
+import "antd/dist/reset.css";
 import "./app.css";
 
 export const links = () => [

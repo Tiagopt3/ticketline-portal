@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router";
 import { Form, Input, Button, Card, Row, Col, message } from "antd";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
 import { useAuth } from "../auth-context";
 
-export default function Login() {
+export function meta() {
+  return [
+    { title: "Register - TicketLine Portal" },
+    { name: "description", content: "Create a new account" },
+  ];
+}
+
+export default function Register() {
   const [loading, setLoading] = useState(false);
   const { login, user } = useAuth();
   const navigate = useNavigate();
@@ -20,13 +27,23 @@ export default function Login() {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      if (values.username === "admin" && values.password === "123456") {
-        login({ email: "admin", id: "admin-user" });
-        message.success("Login successful!");
-        navigate("/");
-      } else {
-        message.error("Credenciais inválidas.");
+      // Validate passwords match
+      if (values.password !== values.confirmPassword) {
+        message.error("Passwords do not match.");
+        return;
       }
+
+      if (values.password.length < 6) {
+        message.error("Password must be at least 6 characters.");
+        return;
+      }
+
+      message.success("Account created successfully! Logging you in...");
+      
+      setTimeout(() => {
+        login({ email: values.email, id: `user-${Date.now()}` });
+        navigate("/");
+      }, 1500);
     } finally {
       setLoading(false);
     }
@@ -49,10 +66,10 @@ export default function Login() {
                 style={{ width: "50%", margin: "0 auto 2rem" }} 
               />
               <h1 style={{ fontSize: "1.25rem", fontWeight: "800", margin: "0.2rem 0", letterSpacing: "0.04em" }}>
-                AREA DE CLIENTE
+                CRIAR CONTA
               </h1>
               <p style={{ fontSize: "0.82rem", color: "#7a7a7a", margin: "0.5rem 0 0" }}>
-                Aceda a sua conta para gerir bilhetes e faturas
+                Registe-se para gerir bilhetes e faturas
               </p>
             </div>
 
@@ -63,14 +80,32 @@ export default function Login() {
               autoComplete="off"
             >
               <Form.Item
+                label="EMAIL"
+                name="email"
+                labelCol={{ style: { fontSize: "0.69rem", fontWeight: "700", letterSpacing: "0.08em" } }}
+                rules={[
+                  { required: true, message: "Por favor insira o seu email" },
+                  { type: "email", message: "Email inválido" },
+                ]}
+              >
+                <Input
+                  prefix={<MailOutlined />}
+                  placeholder="seu@email.com"
+                  size="large"
+                  autoComplete="email"
+                  style={{ minHeight: "44px" }}
+                />
+              </Form.Item>
+
+              <Form.Item
                 label="USERNAME"
                 name="username"
                 labelCol={{ style: { fontSize: "0.69rem", fontWeight: "700", letterSpacing: "0.08em" } }}
-                rules={[{ required: true, message: "Por favor insira o seu username" }]}
+                rules={[{ required: true, message: "Por favor escolha um username" }]}
               >
                 <Input
                   prefix={<UserOutlined />}
-                  placeholder="admin"
+                  placeholder="Choose a username"
                   size="large"
                   autoComplete="username"
                   style={{ minHeight: "44px" }}
@@ -81,13 +116,28 @@ export default function Login() {
                 label="PASSWORD"
                 name="password"
                 labelCol={{ style: { fontSize: "0.69rem", fontWeight: "700", letterSpacing: "0.08em" } }}
-                rules={[{ required: true, message: "Por favor insira a sua password" }]}
+                rules={[{ required: true, message: "Por favor insira uma password" }]}
               >
                 <Input.Password
                   prefix={<LockOutlined />}
-                  placeholder="123456"
+                  placeholder="Minimum 6 characters"
                   size="large"
-                  autoComplete="current-password"
+                  autoComplete="new-password"
+                  style={{ minHeight: "44px" }}
+                />
+              </Form.Item>
+
+              <Form.Item
+                label="CONFIRM PASSWORD"
+                name="confirmPassword"
+                labelCol={{ style: { fontSize: "0.69rem", fontWeight: "700", letterSpacing: "0.08em" } }}
+                rules={[{ required: true, message: "Por favor confirme a sua password" }]}
+              >
+                <Input.Password
+                  prefix={<LockOutlined />}
+                  placeholder="Confirm your password"
+                  size="large"
+                  autoComplete="new-password"
                   style={{ minHeight: "44px" }}
                 />
               </Form.Item>
@@ -106,19 +156,21 @@ export default function Login() {
                     borderColor: "#d70000",
                   }}
                 >
-                  Entrar
+                  CREATE ACCOUNT
                 </Button>
               </Form.Item>
             </Form>
 
             <div style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid #e2e2e2", textAlign: "center" }}>
-              <div style={{ fontSize: "0.78rem", display: "flex", justifyContent: "center", gap: "0.5rem", flexWrap: "wrap" }}>
-                <Link to="/forgot-password" style={{ color: "#d70000", textDecoration: "none" }}>
-                  Esqueci a password
+              <div style={{ fontSize: "0.78rem", marginBottom: "0.5rem" }}>
+                Already have an account?{" "}
+                <Link to="/login" style={{ color: "#d70000", textDecoration: "none" }}>
+                  Login here
                 </Link>
-                <span>|</span>
-                <Link to="/register" style={{ color: "#d70000", textDecoration: "none" }}>
-                  Criar conta
+              </div>
+              <div style={{ fontSize: "0.78rem" }}>
+                <Link to="/forgot-password" style={{ color: "#d70000", textDecoration: "none" }}>
+                  Forgot your password?
                 </Link>
               </div>
             </div>

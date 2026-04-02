@@ -16,19 +16,12 @@ export default function Home() {
   const [timeRemaining, setTimeRemaining] = useState(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      const remaining = getTimeRemaining();
-      setTimeRemaining(remaining);
-      
-      // Auto-logout when session expires
-      if (remaining === 0) {
-        logout();
-        navigate("/login");
-      }
-    }, 1000); // Update every second
+     const timer = setInterval(() => {
+      setTimeRemaining(getTimeRemaining());
+    }, 1000);// Update every second
 
     return () => clearInterval(timer);
-  }, [getTimeRemaining, logout, navigate]);
+  }, [getTimeRemaining]);
 
   const handleLogout = () => {
     logout();

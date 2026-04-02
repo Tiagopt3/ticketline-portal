@@ -103,6 +103,14 @@ body {
   color: #1f2937;
 }
 
+.login-field input:-webkit-autofill,
+.login-field input:-webkit-autofill:hover,
+.login-field input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #bcce03 inset !important;
+  box-shadow: 0 0 0 1000px #bcce03 inset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+}
+
 .login-field input:focus {
   outline: 2px solid #d7000022;
   border-color: #d70000;
@@ -208,4 +216,51 @@ body {
     margin: auto;
   }
 }
+
+/* Ant Design Input Autofill Styling */
+.ant-input:-webkit-autofill,
+.ant-input:-webkit-autofill:hover,
+.ant-input:-webkit-autofill:focus,
+.ant-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #bcce03 inset !important;
+  box-shadow: 0 0 0 1000px #bcce03 inset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  background-color: #bcce03 !important;
+}
+
+.ant-input-password input:-webkit-autofill,
+.ant-input-password input:-webkit-autofill:hover,
+.ant-input-password input:-webkit-autofill:focus,
+.ant-input-password input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #bcce03 inset !important;
+  box-shadow: 0 0 0 1000px #bcce03 inset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  background-color: #bcce03 !important;
+}
+
+/* Override Ant Design affix wrapper box-shadow for autofilled inputs */
+.ant-input-affix-wrapper > input.ant-input:-webkit-autofill,
+.ant-input-affix-wrapper > input.ant-input:-webkit-autofill:focus {
+  box-shadow: 0 0 0 1000px #bcce03 inset !important;
+}
+
+.ant-input-affix-wrapper > textarea.ant-input:-webkit-autofill,
+.ant-input-affix-wrapper > textarea.ant-input:-webkit-autofill:focus {
+  box-shadow: 0 0 0 1000px #bcce03 inset !important;
+}
+
+/* Ant Design Input Selection/Focus/Active Styling */
+.ant-input::selection,
+.ant-input-password input::selection {
+  background-color: #d4e449;
+  color: #1f2937;
+}
+
+.ant-input::-moz-selection,
+.ant-input-password input::-moz-selection {
+  background-color: #d4e449;
+  color: #1f2937;
+}
+
+
 
