@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router";
 import { Form, Input, Button, Card, Row, Col, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useAuth } from "../auth-context";
+import { BASE_URL } from "../constants";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -44,7 +45,7 @@ export default function Login() {
           >
             <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
               <img 
-                src="/images/ticketlineLogo.png" 
+                src={`${BASE_URL}images/ticketlineLogo.png`}
                 alt="TicketLine Logo" 
                 style={{ width: "50%", margin: "0 auto 2rem" }} 
               />

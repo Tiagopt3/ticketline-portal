@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router";
 import { Form, Input, Button, Card, Row, Col, message, Result } from "antd";
 import { MailOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import { useAuth } from "../auth-context";
+import { BASE_URL } from "../constants";
 
 export function meta() {
   return [
@@ -53,7 +54,7 @@ export default function ForgotPassword() {
           >
             <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
               <img 
-                src="/images/ticketlineLogo.png" 
+                src={`${BASE_URL}images/ticketlineLogo.png`}
                 alt="TicketLine Logo" 
                 style={{ width: "50%", margin: "0 auto 2rem" }} 
               />
